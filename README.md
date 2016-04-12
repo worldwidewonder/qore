@@ -1,2 +1,3 @@
-# kodiq
-Kodi remote written in Qt
+# Qore
+
+Qt Kodi remote.
