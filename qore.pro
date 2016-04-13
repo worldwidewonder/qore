@@ -13,7 +13,7 @@ SUBDIRS += \
     api \
     app
 
-app.depends += api
+app.depends = api
 
 OTHER_FILES += \
     MIT.license.txt \

@@ -38,6 +38,22 @@ namespace qore
         next(new QPushButton(style->standardIcon(QStyle::SP_MediaSkipForward), "")),
         previous(new QPushButton(style->standardIcon(QStyle::SP_MediaSkipBackward), ""))
     {
+      // Widget setup
+      up->setFlat(true);
+      down->setFlat(true);
+      left->setFlat(true);
+      right->setFlat(true);
+      center->setFlat(true);
+      back->setFlat(true);
+      context->setFlat(true);
+      play->setFlat(true);
+      pause->setFlat(true);
+      stop->setFlat(true);
+      fast_forward->setFlat(true);
+      rewind->setFlat(true);
+      next->setFlat(true);
+      previous->setFlat(true);
+
       // Layout Setup
       auto button_grid = new QGridLayout(this);
       button_grid->addWidget(up, 0, 1);
@@ -66,7 +82,7 @@ namespace qore
       signal_mapper->setMapping(next, Qt::Key_MediaNext);
       signal_mapper->setMapping(previous, Qt::Key_MediaPrevious);
 
-      // ust Qt 5.7's qOverload helper
+      // TODO: use Qt 5.7's qOverload helper
       connect(up, SIGNAL(clicked()), signal_mapper, SLOT(map()));
       connect(down, SIGNAL(clicked()), signal_mapper, SLOT(map()));
       connect(left, SIGNAL(clicked()), signal_mapper, SLOT(map()));

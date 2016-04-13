@@ -45,7 +45,11 @@ namespace qore
   namespace api
   {
     // constants
+#ifdef _MSC_VER
+#define default_range {0,25}
+#else
     static constexpr QPair<int, int> default_range = {0,25};
+#endif
 
     class client : public QObject
     {
@@ -74,14 +78,18 @@ namespace qore
         QString RPC_prolog;
         QString RPC_epilog;
 
-        QString call_method(QString method, QList<QPair<QString, QString>> parameters = {});
+        void call_method(QString method, QList<QPair<QString, QString>> parameters = {});
 
       private slots:
-        void print_response(QString response);
-        void print_binary_response(QByteArray response);
+        //void print_response(QString response);
+        //void print_binary_response(QByteArray response);
     };
 
   }
 }
+
+#ifdef _MSC_VER
+#undef default_range
+#endif
 
 #endif // QORE_API_CLIENT_H

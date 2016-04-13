@@ -20,8 +20,7 @@ INCLUDEPATH += \
     . \
     ..
 
-LIBS += \
-    -L../api -lqoreAPI
+LIBS += -L../api -lqoreAPI
 
 SOURCES += \
     main.c++ \

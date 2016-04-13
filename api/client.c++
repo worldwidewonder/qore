@@ -27,10 +27,7 @@ namespace qore
                                 int port)
     {
       socket.open(host + QStringLiteral(":") + port + QStringLiteral("/jsonrpc"));
-      connect(&socket, &QWebSocket::textMessageReceived,
-              this, &client::print_response);
-      connect(&socket, &QWebSocket::binaryMessageReceived,
-              this, &client::print_binary_response);
+      //connect(&socket, &QWebSocket::textMessageReceived, this, &client::record_response);
     }
 
     // input
@@ -40,37 +37,59 @@ namespace qore
       // TODO: use QHash
       // TODO: fast-forward, rewind, next, previous
       // ["left","right","up","down","pageup","pagedown","select","highlight","parentdir","parentfolder","back","menu","previousmenu","info","pause","stop","skipnext","skipprevious","fullscreen","aspectratio","stepforward","stepback","bigstepforward","bigstepback","chapterorbigstepforward","chapterorbigstepback","osd","showsubtitles","nextsubtitle","cyclesubtitle","codecinfo","nextpicture","previouspicture","zoomout","zoomin","playlist","queue","zoomnormal","zoomlevel1","zoomlevel2","zoomlevel3","zoomlevel4","zoomlevel5","zoomlevel6","zoomlevel7","zoomlevel8","zoomlevel9","nextcalibration","resetcalibration","analogmove","analogmovex","analogmovey","rotate","rotateccw","close","subtitledelayminus","subtitledelay","subtitledelayplus","audiodelayminus","audiodelay","audiodelayplus","subtitleshiftup","subtitleshiftdown","subtitlealign","audionextlanguage","verticalshiftup","verticalshiftdown","nextresolution","audiotoggledigital","number0","number1","number2","number3","number4","number5","number6","number7","number8","number9","smallstepback","fastforward","rewind","play","playpause","switchplayer","delete","copy","move","screenshot","rename","togglewatched","scanitem","reloadkeymaps","volumeup","volumedown","mute","backspace","scrollup","scrolldown","analogfastforward","analogrewind","moveitemup","moveitemdown","contextmenu","shift","symbols","cursorleft","cursorright","showtime","analogseekforward","analogseekback","showpreset","nextpreset","previouspreset","lockpreset","randompreset","increasevisrating","decreasevisrating","showvideomenu","enter","increaserating","decreaserating","togglefullscreen","nextscene","previousscene","nextletter","prevletter","jumpsms2","jumpsms3","jumpsms4","jumpsms5","jumpsms6","jumpsms7","jumpsms8","jumpsms9","filter","filterclear","filtersms2","filtersms3","filtersms4","filtersms5","filtersms6","filtersms7","filtersms8","filtersms9","firstpage","lastpage","guiprofile","red","green","yellow","blue","increasepar","decreasepar","volampup","volampdown","volumeamplification","createbookmark","createepisodebookmark","settingsreset","settingslevelchange","stereomode","nextstereomode","previousstereomode","togglestereomode","stereomodetomono","channelup","channeldown","previouschannelgroup","nextchannelgroup","playpvr","playpvrtv","playpvrradio","record","leftclick","rightclick","middleclick","doubleclick","longclick","wheelup","wheeldown","mousedrag","mousemove","tap","longpress","pangesture","zoomgesture","rotategesture","swipeleft","swiperight","swipeup","swipedown","error","noop"]
-      QString jsonkey;
       switch(key)
       {
         case Qt::Key_Up:
-          jsonkey = "up";
+          call_method("Input.Up");
           break;
         case Qt::Key::Key_Down:
-          jsonkey = "down";
+          call_method("Input.Down");
           break;
         case Qt::Key_Left:
-          jsonkey = "left";
+          call_method("Input.Left");
           break;
         case Qt::Key_Right:
-          jsonkey = "right";
+          call_method("Input.Right");
           break;
         case Qt::Key_Enter:
-          jsonkey = "enter";
+          call_method("Input.Select");
+          break;
+        case Qt::Key_Back:
+          call_method("Input.Back");
+          break;
+        case Qt::Key_Menu:
+          call_method("Input.Menu");
+          break;
+        case Qt::Key_Home:
+          call_method("Input.Home");
+          break;
+        case Qt::Key_Info:
+          call_method("Input.Info");
           break;
         case Qt::Key_MediaPlay:
-          jsonkey = "play";
+          call_method("Input.ExecuteAction", {{ "action", "play" }});
           break;
         case Qt::Key_MediaPause:
-          jsonkey = "pause";
+          call_method("Input.ExecuteAction", {{ "action", "pause" }});
           break;
         case Qt::Key_MediaStop:
-          jsonkey = "stop";
+          call_method("Input.ExecuteAction", {{ "action", "stop" }});
+          break;
+        case Qt::Key_AudioForward:
+          call_method("Input.ExecuteAction", {{ "action", "fastforward" }});
+          break;
+        case Qt::Key_AudioRewind:
+          call_method("Input.ExecuteAction", {{ "action", "rewind" }});
+          break;
+        case Qt::Key_MediaNext:
+          call_method("Input.ExecuteAction", {{ "action", "skipnext" }});
+          break;
+        case Qt::Key_MediaPrevious:
+          call_method("Input.ExecuteAction", {{ "action", "skipprevious" }});
           break;
         default:
-          jsonkey = "noop";
+          call_method("Input.ExecuteAction", {{ "action", "noop" }});
       }
-      call_method("Input.ExecuteAction", {{ "action", jsonkey }});
     }
 
     QList<artist> client::get_artists(QPair<int, int> range)
@@ -94,7 +113,7 @@ namespace qore
       return result;
     }
 
-    QString client::call_method(QString method, QList<QPair<QString, QString>> parameters)
+    void client::call_method(QString method, QList<QPair<QString, QString>> parameters)
     {
       QString request = RPC_prolog + ",\"method\":\"" + method + '\"';
 
@@ -109,21 +128,10 @@ namespace qore
         params += '}';
         request += params;
       }
-      qDebug() << request;
+      request += RPC_epilog;
+      qDebug() << "Sending request: \'" << request << "\'.";
 
       socket.sendTextMessage(request);
-      socket.flush(); // ensure data is actually sent
-
-      return QStringLiteral("");
-    }
-
-    void client::print_response(QString response)
-    {
-      qDebug() << response;
-    }
-    void client::print_binary_response(QByteArray response)
-    {
-      qDebug() << QString::fromUtf8(response);
     }
   }
 }
