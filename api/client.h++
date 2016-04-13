@@ -36,9 +36,9 @@
 #include <QtWebSockets/QWebSocket>
 #include <QtCore>
 
-#include "audio/album.h++"
-#include "audio/artist.h++"
-#include "audio/song.h++"
+#include "audio/album.hpp"
+#include "audio/artist.hpp"
+#include "audio/song.hpp"
 
 namespace qore
 {
@@ -65,6 +65,7 @@ namespace qore
         // connection
         void connect_socket(QString host,
                             int port);
+        void connected();
 
         // input
         void keypress(int keycode);
@@ -78,10 +79,11 @@ namespace qore
         QString RPC_prolog;
         QString RPC_epilog;
 
+        QString response;
         void call_method(QString method, QList<QPair<QString, QString>> parameters = {});
 
       private slots:
-        //void print_response(QString response);
+        void record_response(QString response);
         //void print_binary_response(QByteArray response);
     };
 

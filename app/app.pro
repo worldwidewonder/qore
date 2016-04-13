@@ -20,17 +20,18 @@ INCLUDEPATH += \
     . \
     ..
 
-LIBS += -L../api -lqoreAPI
+!*win*:LIBS += -L../api -lqoreAPI
+*win*:LIBS += -L../api/debug -lqoreAPI
 
 SOURCES += \
-    main.c++ \
+    connection.c++ \
     library_view.c++ \
-    remote_control.c++ \
+    main.c++ \
     qore_widget.c++ \
-    connection.c++
+    remote_control.c++
 
 HEADERS  += \
+    connection.h++ \
     library_view.h++ \
-    remote_control.h++ \
     qore_widget.h++ \
-    connection.h++
+    remote_control.h++

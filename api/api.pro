@@ -17,9 +17,9 @@ include(../qore.pri)
 
 HEADERS += \
     client.h++ \
-    audio/album.h++ \
+    audio/song.h++ \
     audio/artist.h++ \
-    audio/song.h++
+    audio/album.h++
 
 SOURCES += \
     client.c++
