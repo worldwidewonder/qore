@@ -49,6 +49,8 @@ namespace qore
       // Connections
       connect(buttons, &QDialogButtonBox::accepted,
               this, &connection::OK_button_clicked);
+      connect(&socket, &QWebSocket::connected,
+              this, &connection::connection_OK);
     }
 
     void connection::OK_button_clicked()
@@ -58,8 +60,7 @@ namespace qore
                  + QStringLiteral("/jsonrpc");
       qDebug() << "Opening websocket connection with \'" << url << "\'.";
       socket.open(url);
-
-      emit connection_OK();
+      // TODO set short timeout to inform user of no connection
     }
   }
 }
