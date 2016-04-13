@@ -8,7 +8,7 @@
  *
  **/
 
-#include "client.hpp"
+#include "client.h++"
 
 #include <QtCore/QPair>
 

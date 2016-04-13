@@ -14,11 +14,13 @@
 #include <QtCore/QString>
 #include <QtGui/QImage>
 
+#include "export.h++"
+
 namespace qore
 {
   namespace api
   {
-    struct artist
+    struct QORE_API artist
     {
       QString name;
       int ID;

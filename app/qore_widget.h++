@@ -18,7 +18,7 @@
 #include <QtWebSockets/QWebSocket>
 #include <QtWidgets/QMainWindow>
 
-#include "api/client.h++"
+#include "client.h++"
 
 namespace qore
 {

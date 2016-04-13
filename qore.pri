@@ -20,5 +20,6 @@ MY_CXXFLAGS = -std=c++14 -pedantic -Wextra \
 # Enable c++/h++ extensions
 QMAKE_EXT_CPP = .c++
 QMAKE_EXT_H = .h++
+*msvc*:QMAKE_CXXFLAGS += /TP
 
 INCLUDEPATH += .

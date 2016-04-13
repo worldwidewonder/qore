@@ -15,7 +15,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
-#include "api/client.h++"
+#include "client.h++"
 
 class QWebSocket;
 

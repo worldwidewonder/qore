@@ -36,9 +36,11 @@
 #include <QtWebSockets/QWebSocket>
 #include <QtCore>
 
-#include "audio/album.hpp"
-#include "audio/artist.hpp"
-#include "audio/song.hpp"
+#include "audio/album.h++"
+#include "audio/artist.h++"
+#include "audio/song.h++"
+
+#include "export.h++"
 
 namespace qore
 {
@@ -51,7 +53,7 @@ namespace qore
     static constexpr QPair<int, int> default_range = {0,25};
 #endif
 
-    class client : public QObject
+    class QORE_API client : public QObject
     {
         Q_OBJECT
       public:

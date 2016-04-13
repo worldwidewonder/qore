@@ -14,14 +14,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = qore
 TEMPLATE = app
 
+DEFINES += QORE_API_DLL
+
 include(../qore.pri)
 
-INCLUDEPATH += \
-    . \
-    ..
-
-!*win*:LIBS += -L../api -lqoreAPI
-*win*:LIBS += -L../api/debug -lqoreAPI
+INCLUDEPATH += .
 
 SOURCES += \
     connection.c++ \
@@ -35,3 +32,10 @@ HEADERS  += \
     library_view.h++ \
     qore_widget.h++ \
     remote_control.h++
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../api/release/ -lqoreAPI
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../api/debug/ -lqoreAPI
+else:unix: LIBS += -L$$OUT_PWD/../api/ -lqoreAPI
+
+INCLUDEPATH += $$PWD/../api
+DEPENDPATH += $$PWD/../api

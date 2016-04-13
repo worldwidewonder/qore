@@ -13,11 +13,13 @@
 
 #include <QtCore/QString>
 
+#include "export.h++"
+
 namespace qore
 {
   namespace api
   {
-    struct song
+    struct QORE_API song
     {
       QString name;
       QString album;

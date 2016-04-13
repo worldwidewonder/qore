@@ -14,11 +14,13 @@
 #include <QtCore/QString>
 #include <QtGui/QImage>
 
+#include "export.h++"
+
 namespace qore
 {
   namespace api
   {
-    class album
+    struct QORE_API album
     {
       public:
         album();
@@ -29,7 +31,6 @@ namespace qore
         QImage thumbnail;
         QImage fanart;
     };
-
   }
 }
 
