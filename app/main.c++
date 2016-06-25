@@ -16,6 +16,9 @@ using namespace qore::app;
 
 int main(int argc, char *argv[])
 {
+#ifdef Q_OS_WINRT
+  QApplication::setStyle("winrt");
+#endif
   QApplication a(argc, argv);
   qore_widget widget;
   widget.show();

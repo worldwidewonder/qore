@@ -8,6 +8,10 @@
  *
  **/
 
+/*
+ * Segoe MDL2 Assets remote control icon: 59729
+ */
+
 #ifndef REMOTE_CONTROL_H
 #define REMOTE_CONTROL_H
 
@@ -33,6 +37,7 @@ namespace qore
       signals:
 
       public slots:
+        void resizeEvent(QResizeEvent *event) override;
 
       private:
         const api::client& client;
@@ -54,6 +59,8 @@ namespace qore
         QPushButton* rewind;
         QPushButton* next;
         QPushButton* previous;
+
+        QList<QPushButton*> buttons; // easy access to list of buttons
     };
   }
 }

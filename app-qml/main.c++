@@ -22,38 +22,24 @@
  * SOFTWARE.
  **/
 
-/*
- * Socket
- * QWebSocket wrapper to enable simple access to a Kodi instance through the websocket interface
- */
+#include <QtGui/QGuiApplication>
+#include <QtQml/QQmlApplicationEngine>
+#include <QtQml>
 
-#ifndef KODIQ_SOCKET_H
-#define KODIQ_SOCKET_H
+#include "client.h++"
 
-#include <QtCore/QObject>
-
-namespace kodiq
+int main(int argc, char *argv[])
 {
-  class Socket : public QObject
-  {
-      Q_OBJECT
-    public:
-      explicit Socket(QObject *parent = 0);
+  QGuiApplication app(argc, argv);
+  QGuiApplication::setApplicationName("Qore");
+  QGuiApplication::setOrganizationName("Ruben Van Boxem");
+  QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    signals:
+  qore::api::client client;
 
+  QQmlApplicationEngine engine;
+  engine.rootContext()->setContextProperty("client", &client);
+  engine.load(QUrl("qrc:/main.qml"));
 
-    public slots:
-      void sendRequest(QString nonrepeatingStuff)
-      {
-
-      }
-
-    private:
-      QString hostname;
-      qint port;
-
-  };
+  return app.exec();
 }
-
-#endif // KODIQ_SOCKET_H

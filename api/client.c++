@@ -18,28 +18,31 @@ namespace qore
   {
     client::client(QObject *parent)
       : QObject(parent),
+        socket(),
         RPC_prolog("{ \"jsonrpc\": \"2.0\""),
-        RPC_epilog(", \"id\": 1 }"),
-        response()
+        RPC_epilog(", \"id\": 1 }")
     {
-      connect(&socket, &QWebSocket::connected,
-              this, &client::connected);
+      connect(&socket, &QWebSocket::connected, this, &client::start_receiving_messages);
+      connect_socket("localhost", 9090);
     }
 
     // connection
     void client::connect_socket(QString host,
                                 int port)
     {
+      qDebug() << "Attempting to open Websocket connection to " << host << ':' << port;
       socket.open(host + QStringLiteral(":") + port + QStringLiteral("/jsonrpc"));
     }
-    void client::connected()
+    void client::start_receiving_messages()
     {
-      connect(&socket, &QWebSocket::textMessageReceived, this, &client::record_response);
+      qDebug() << "Client connected and awaiting messages!";
+      connect(&socket, &QWebSocket::textMessageReceived, this, &client::handle_response);
     }
 
     // input
     void client::keypress(int keycode)
     {
+      Q_ASSERT(socket.isValid());
       Qt::Key key = static_cast<Qt::Key>(keycode);
       // TODO: use QHash
       // TODO: fast-forward, rewind, next, previous
@@ -164,10 +167,10 @@ namespace qore
 
       socket.sendTextMessage(request);
     }
-    void client::record_response(QString response)
+    void client::handle_response(QString response)
     {
       qDebug() << "Response received: \'" << response << "\'.";
-      this->response = response;
+
     }
   }
 }

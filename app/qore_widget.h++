@@ -9,13 +9,18 @@
  **/
 
 /*
- * Qore Core widget
+ * Qore Core widget containing navigation and main widget.
  */
 
 #ifndef QORE_APP_QORE_WIDGET_H
 #define QORE_APP_QORE_WIDGET_H
 
 #include <QtWebSockets/QWebSocket>
+
+#include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QStyle>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QToolButton>
 #include <QtWidgets/QMainWindow>
 
 #include "client.h++"
@@ -34,10 +39,12 @@ namespace qore
         explicit qore_widget(QWidget* parent = 0);
 
       public slots:
-        void navigate_to_remote_control();
 
       private:
         api::client client;
+
+        QTabWidget* view;
+
         app::connection* connection;
         app::remote_control* remote_control;
     };

@@ -23,7 +23,7 @@
  **/
 
 /*
- * Shared library export magic
+ * Shared library export magic.
  */
 
 #ifndef QORE_API_EXPORT_H

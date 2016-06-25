@@ -11,11 +11,14 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     api \
-    app
+    app \
+    app-qml
 
 app.depends = api
 
 OTHER_FILES += \
     MIT.license.txt \
-    GPLv3.license.txt \
     README.md
+
+DISTFILES += \
+    LGPLv3.license.txt

@@ -10,17 +10,18 @@
 TARGET = qoreAPI
 TEMPLATE = lib
 QT += core gui websockets
-CONFIG += staticlib
+CONFIG += shared console
+CONFIG += staticlib # requires that app also doesn't define QORE_API_DLL!!
 
 include(../qore.pri)
 
 !staticlib:DEFINES += QORE_API_EXPORT QORE_API_DLL
 
 HEADERS += \
-    client.h++ \
-    audio/song.h++ \
-    audio/artist.h++ \
     audio/album.h++ \
+    audio/artist.h++ \
+    audio/song.h++ \
+    client.h++ \
     export.h++
 
 SOURCES += \

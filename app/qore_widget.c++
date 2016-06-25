@@ -10,6 +10,8 @@
 
 #include "qore_widget.h++"
 
+#include <QtWidgets/QTabBar>
+
 #include "connection.h++"
 #include "remote_control.h++"
 
@@ -20,19 +22,19 @@ namespace qore
     qore_widget::qore_widget(QWidget* parent)
       : QMainWindow(parent),
         client(this),
-        connection(new app::connection(client.socket, this)),
-        remote_control(new app::remote_control(client, this))
+        //titleBar(addToolBar("Qore")),
+        view(new QTabWidget(this)),
+        connection(new app::connection(client.socket, view)),
+        remote_control(new app::remote_control(client, view))
     {
-      setCentralWidget(connection);
+      qDebug() << "Client should be constructed...";
+      /// Widget Setup
+      view->setTabPosition(QTabWidget::West);
+      view->addTab(connection, style()->standardIcon(QStyle::SP_DriveNetIcon), tr(""));
+      view->addTab(remote_control, style()->standardIcon(QStyle::SP_MediaPlay), tr(""));
 
-      connect(connection, &connection::connection_OK,
-              this, &qore_widget::navigate_to_remote_control);
-    }
-
-    void qore_widget::navigate_to_remote_control()
-    {
-      // Layout setup
-      setCentralWidget(remote_control);
+      /// Layout setup
+      setCentralWidget(view);
     }
   }
 }

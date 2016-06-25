@@ -17,6 +17,11 @@ namespace qore
 {
   namespace app
   {
+#ifdef _MSC_VER
+#define default_button_size {48,48}
+#else
+    constexpr QSize default_button_size {48,48};
+#endif
     remote_control::remote_control(const api::client& client,
                                    QWidget* parent)
       : QWidget(parent),
@@ -36,25 +41,18 @@ namespace qore
         fast_forward(new QPushButton(style->standardIcon(QStyle::SP_MediaSeekForward), "")),
         rewind(new QPushButton(style->standardIcon(QStyle::SP_MediaSeekBackward), "")),
         next(new QPushButton(style->standardIcon(QStyle::SP_MediaSkipForward), "")),
-        previous(new QPushButton(style->standardIcon(QStyle::SP_MediaSkipBackward), ""))
+        previous(new QPushButton(style->standardIcon(QStyle::SP_MediaSkipBackward), "")),
+        buttons({up, down, left, right, center, back, context, play, pause, stop, fast_forward, rewind, next, previous})
     {
-      // Widget setup
-      up->setFlat(true);
-      down->setFlat(true);
-      left->setFlat(true);
-      right->setFlat(true);
-      center->setFlat(true);
-      back->setFlat(true);
-      context->setFlat(true);
-      play->setFlat(true);
-      pause->setFlat(true);
-      stop->setFlat(true);
-      fast_forward->setFlat(true);
-      rewind->setFlat(true);
-      next->setFlat(true);
-      previous->setFlat(true);
+      /// Widget setup
+      for(auto& button : buttons)
+      {
+        button->setFlat(true);
+        button->setIconSize(default_button_size);
+      }
 
-      // Layout Setup
+      /// Layout Setup
+      // Navigation buttons
       auto button_grid = new QGridLayout(this);
       button_grid->addWidget(up, 0, 1);
       button_grid->addWidget(left, 1, 0);
@@ -66,7 +64,15 @@ namespace qore
       button_grid->addWidget(pause, 3, 1);
       button_grid->addWidget(play, 3, 2);
 
-      // Connections
+      // Media controls
+      auto bottom_grid = new QGridLayout();
+      bottom_grid->addWidget(previous, 0, 0);
+      bottom_grid->addWidget(rewind, 0, 1);
+      bottom_grid->addWidget(fast_forward, 0, 2);
+      bottom_grid->addWidget(next, 0, 3);
+      button_grid->addLayout(bottom_grid, 4, 0, 1, 3);
+
+      /// Connections
       signal_mapper->setMapping(up, Qt::Key_Up);
       signal_mapper->setMapping(down, Qt::Key_Down);
       signal_mapper->setMapping(left, Qt::Key_Left);
@@ -77,29 +83,24 @@ namespace qore
       signal_mapper->setMapping(play, Qt::Key_MediaPlay);
       signal_mapper->setMapping(pause, Qt::Key_MediaPause);
       signal_mapper->setMapping(stop, Qt::Key_MediaStop);
-      //signal_mapper->setMapping(fast_forward, Qt::Key_MediaFastForward);
-      //signal_mapper->setMapping(rewind, Qt::Key_MediaMediaRewind);
+      signal_mapper->setMapping(fast_forward, Qt::Key_AudioForward);
+      signal_mapper->setMapping(rewind, Qt::Key_AudioRewind);
       signal_mapper->setMapping(next, Qt::Key_MediaNext);
       signal_mapper->setMapping(previous, Qt::Key_MediaPrevious);
 
       // TODO: use Qt 5.7's qOverload helper
-      connect(up, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      connect(down, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      connect(left, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      connect(right, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      connect(center, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      connect(back, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      connect(context, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      connect(play, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      connect(pause, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      connect(stop, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      //connect(fast_forward, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      //connect(rewind, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      connect(next, SIGNAL(clicked()), signal_mapper, SLOT(map()));
-      connect(previous, SIGNAL(clicked()), signal_mapper, SLOT(map()));
+      for(const auto& button : buttons)
+      {
+        connect(button, SIGNAL(clicked()), signal_mapper, SLOT(map()));
+      }
 
       connect(signal_mapper, SIGNAL(mapped(int)),
               &client, SLOT(keypress(int)));
+    }
+
+    void remote_control::resizeEvent(QResizeEvent *event)
+    {
+
     }
   }
 }

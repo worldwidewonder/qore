@@ -56,6 +56,7 @@ namespace qore
     class QORE_API client : public QObject
     {
         Q_OBJECT
+
       public:
         explicit client(QObject *parent = 0);
 
@@ -65,28 +66,26 @@ namespace qore
 
       public slots:
         // connection
-        void connect_socket(QString host,
-                            int port);
-        void connected();
+        Q_INVOKABLE void connect_socket(QString host,
+                                        int port);
+        void start_receiving_messages();
 
         // input
-        void keypress(int keycode);
+        Q_INVOKABLE void keypress(int keycode);
 
         // audio
-        QList<artist> get_artists(QPair<int, int> range = default_range);
-        QList<album> get_albums(QPair<int, int> range = default_range);
-        QList<song> get_songs(QPair<int, int> range = default_range);
+        Q_INVOKABLE QList<artist> get_artists(QPair<int, int> range = default_range);
+        Q_INVOKABLE QList<album> get_albums(QPair<int, int> range = default_range);
+        Q_INVOKABLE QList<song> get_songs(QPair<int, int> range = default_range);
 
       private:
         QString RPC_prolog;
         QString RPC_epilog;
 
-        QString response;
         void call_method(QString method, QList<QPair<QString, QString>> parameters = {});
 
       private slots:
-        void record_response(QString response);
-        //void print_binary_response(QByteArray response);
+        void handle_response(QString response);
     };
 
   }

@@ -14,7 +14,10 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = qore
 TEMPLATE = app
 
-DEFINES += QORE_API_DLL
+#DEFINES += QORE_API_DLL
+
+*win*:CONFIG += windeployqt
+*winrt*:WINRT_MANIFEST.capabilities += internetClientServer privateNetworkClientServer
 
 include(../qore.pri)
 
@@ -39,3 +42,7 @@ else:unix: LIBS += -L$$OUT_PWD/../api/ -lqoreAPI
 
 INCLUDEPATH += $$PWD/../api
 DEPENDPATH += $$PWD/../api
+
+DISTFILES +=
+
+RESOURCES +=
