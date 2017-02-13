@@ -24,9 +24,9 @@
 
 import QtQuick 2.6
 import QtQuick.Layouts 1.0
-import Qt.labs.controls 1.0
-import Qt.labs.controls.material 1.0
-import Qt.labs.controls.universal 1.0
+import QtQuick.Controls 2.0
+//import Qt.labs.controls.material 1.0
+//import Qt.labs.controls.universal 1.0
 
 Pane
 {
@@ -57,9 +57,9 @@ Pane
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        label: Image
+        contentItem: Image
         {
-          source: "qrc:/icons/commenting-o"
+          source: "icons/commenting-o.svg"
           anchors.fill: parent
         }
       }
@@ -72,9 +72,9 @@ Pane
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        label: Image
+        contentItem: Image
         {
-          source: "qrc:/icons/chevron-up"
+          source: "icons/chevron-up.svg"
           anchors.fill: parent
         }
 
@@ -82,16 +82,16 @@ Pane
       }
       Button
       {
-        id: left
+        id: goleft
 
         Layout.row: 1
         Layout.column: 0
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        label: Image
+        contentItem: Image
         {
-          source: "qrc:/icons/chevron-left"
+          source: "icons/chevron-left.svg"
           anchors.fill: parent
         }
 
@@ -106,9 +106,9 @@ Pane
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        label: Image
+        contentItem: Image
         {
-          source: "qrc:/icons/check"
+          source: "icons/check.svg"
           anchors.fill: parent
         }
 
@@ -116,16 +116,16 @@ Pane
       }
       Button
       {
-        id: right
+        id: goright
 
         Layout.row: 1
         Layout.column: 2
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        label: Image
+        contentItem: Image
         {
-          source: "qrc:/icons/chevron-right"
+          source: "icons/chevron-right.svg"
           anchors.fill: parent
         }
 
@@ -140,9 +140,9 @@ Pane
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        label: Image
+        contentItem: Image
         {
-          source: "qrc:/icons/arrow-left"
+          source: "icons/arrow-left.svg"
           anchors.fill: parent
         }
 
@@ -157,9 +157,9 @@ Pane
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        label: Image
+        contentItem: Image
         {
-          source: "qrc:/icons/chevron-down"
+          source: "icons/chevron-down.svg"
           anchors.fill: parent
         }
 
@@ -180,9 +180,9 @@ Pane
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        label: Image
+        contentItem: Image
         {
-          source: "qrc:/icons/backward"
+          source: "icons/backward.svg"
           anchors.fill: parent
         }
 
@@ -197,7 +197,7 @@ Pane
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        label: Image
+        contentItem: Image
         {
           source: "qrc:/icons/pause"
           anchors.fill: parent
@@ -213,9 +213,9 @@ Pane
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        label: Image
+        contentItem: Image
         {
-          source: "qrc:/icons/play"
+          source: "icons/play.svg"
           anchors.fill: parent
         }
 
@@ -230,9 +230,9 @@ Pane
         Layout.fillWidth: true
         Layout.fillHeight: true
 
-        label: Image
+        contentItem: Image
         {
-          source: "qrc:/icons/forward"
+          source: "icons/forward.svg"
           anchors.fill: parent
         }
 

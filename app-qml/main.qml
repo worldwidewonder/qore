@@ -23,7 +23,7 @@
  **/
 
 import QtQuick 2.6
-import Qt.labs.controls 1.0
+import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 //import Qt.labs.controls.material 1.0
 //import Qt.labs.controls.universal 1.0
@@ -53,10 +53,10 @@ ApplicationWindow
 
       ToolButton
       {
-        label: Image
+        contentItem: Image
         {
           anchors.centerIn: parent
-          source: "qrc:/icons/navicon"
+          source: "icons/navicon.svg"
           sourceSize.width: 32
         }
         onClicked: drawer.open()
@@ -75,25 +75,25 @@ ApplicationWindow
 
       ToolButton
       {
-        label: Image
+        contentItem: Image
         {
           anchors.centerIn: parent
-          source: "qrc:/icons/remote"
+          source: "icons/remote.svg"
           sourceSize.width: 32
         }
         onClicked:
         {
           listView.currentIndex = 2
-          stackView.replace("qrc:/remote.qml")
+          stackView.replace("remote.qml.svg")
         }
       }
 
       ToolButton
       {
-        label: Image
+        contentItem: Image
         {
           anchors.centerIn: parent
-          source: "qrc:/icons/ellipsis-v"
+          source: "icons/ellipsis-v.svg"
           sourceSize.width: 32
         }
         onClicked: optionsMenu.open()
@@ -153,7 +153,7 @@ ApplicationWindow
         delegate: ItemDelegate
         {
           width: parent.width
-          label: GridLayout
+          contentItem: GridLayout
           {
             implicitHeight: 48
             Image
@@ -176,15 +176,14 @@ ApplicationWindow
 
         model: ListModel
         {
-          ListElement { name: "Qore";       icon: "qrc:/icons/navicon" }
-          ListElement { name: "Connection"; icon: "qrc:/icons/chain";  source: "qrc:/connection.qml" }
-          ListElement { name: "Remote";     icon: "qrc:/icons/remote"; source: "qrc:/remote.qml" }
+          ListElement { name: "Qore";       icon: "icons/navicon.svg" }
+          ListElement { name: "Connection"; icon: "icons/chain";  source: "qrc:/connection.qml.svg" }
+          ListElement { name: "Remote";     icon: "icons/remote"; source: "qrc:/remote.qml.svg" }
         }
 
         ScrollIndicator.vertical: ScrollIndicator {}
       }
     }
-    onClicked: close()
   }
 
   StackView
@@ -192,7 +191,7 @@ ApplicationWindow
     id: stackView
     anchors.fill: parent
 
-    initialItem: "qrc:/connection.qml"
+    initialItem: "connection.qml.svg"
   }
 
   Connections
