@@ -1,53 +1,53 @@
 <RCC>
     <qresource prefix="/icons">
-        <file alias="backward">icons/backward.svg</file>
-        <file alias="bars">icons/bars.svg</file>
-        <file alias="chain">icons/chain.svg</file>
-        <file alias="check">icons/check.svg</file>
-        <file alias="chevron-down">icons/chevron-down.svg</file>
-        <file alias="chevron-left">icons/chevron-left.svg</file>
-        <file alias="chevron-right">icons/chevron-right.svg</file>
-        <file alias="chevron-up">icons/chevron-up.svg</file>
-        <file alias="close">icons/close.svg</file>
-        <file alias="commenting-o">icons/commenting-o.svg</file>
-        <file alias="ellipsis-h">icons/ellipsis-h.svg</file>
-        <file alias="ellipsis-v">icons/ellipsis-v.svg</file>
-        <file alias="exclamation">icons/exclamation.svg</file>
-        <file alias="fast-backward">icons/fast-backward.svg</file>
-        <file alias="fast-forward">icons/fast-forward.svg</file>
-        <file alias="folder-open-o">icons/folder-open-o.svg</file>
-        <file alias="forward">icons/forward.svg</file>
-        <file alias="home">icons/home.svg</file>
-        <file alias="image">icons/image.svg</file>
-        <file alias="info">icons/info.svg</file>
-        <file alias="level-down">icons/level-down.svg</file>
-        <file alias="level-up">icons/level-up.svg</file>
-        <file alias="license">icons/LICENSE</file>
-        <file alias="music">icons/music.svg</file>
-        <file alias="navicon">icons/navicon.svg</file>
-        <file alias="pause-circle-o">icons/pause-circle-o.svg</file>
-        <file alias="pause">icons/pause.svg</file>
-        <file alias="photo">icons/photo.svg</file>
-        <file alias="play-circle-o">icons/play-circle-o.svg</file>
-        <file alias="play">icons/play.svg</file>
-        <file alias="plus">icons/plus.svg</file>
-        <file alias="question">icons/question.svg</file>
-        <file alias="random">icons/random.svg</file>
-        <file alias="refresh">icons/refresh.svg</file>
-        <file alias="remove">icons/remove.svg</file>
-        <file alias="repeat">icons/repeat.svg</file>
-        <file alias="search">icons/search.svg</file>
-        <file alias="star-o">icons/star-o.svg</file>
-        <file alias="star">icons/star.svg</file>
-        <file alias="step-backward">icons/step-backward.svg</file>
-        <file alias="step-forward">icons/step-forward.svg</file>
-        <file alias="stop-circle-o">icons/stop-circle-o.svg</file>
-        <file alias="stop">icons/stop.svg</file>
-        <file alias="volume-down">icons/volume-down.svg</file>
-        <file alias="volume-off">icons/volume-off.svg</file>
-        <file alias="volume-up">icons/volume-up.svg</file>
-        <file alias="arrow-left">icons/arrow-left.svg</file>
-        <file alias="remote">icons/remote.svg</file>
+        <file>icons/backward.svg</file>
+        <file>icons/bars.svg</file>
+        <file>icons/chain.svg</file>
+        <file>icons/check.svg</file>
+        <file>icons/chevron-down.svg</file>
+        <file>icons/chevron-left.svg</file>
+        <file>icons/chevron-right.svg</file>
+        <file>icons/chevron-up.svg</file>
+        <file>icons/close.svg</file>
+        <file>icons/commenting-o.svg</file>
+        <file>icons/ellipsis-h.svg</file>
+        <file>icons/ellipsis-v.svg</file>
+        <file>icons/exclamation.svg</file>
+        <file>icons/fast-backward.svg</file>
+        <file>icons/fast-forward.svg</file>
+        <file>icons/folder-open-o.svg</file>
+        <file>icons/forward.svg</file>
+        <file>icons/home.svg</file>
+        <file>icons/image.svg</file>
+        <file>icons/info.svg</file>
+        <file>icons/level-down.svg</file>
+        <file>icons/level-up.svg</file>
+        <file>icons/LICENSE</file>
+        <file>icons/music.svg</file>
+        <file>icons/navicon.svg</file>
+        <file>icons/pause-circle-o.svg</file>
+        <file>icons/pause.svg</file>
+        <file>icons/photo.svg</file>
+        <file>icons/play-circle-o.svg</file>
+        <file>icons/play.svg</file>
+        <file>icons/plus.svg</file>
+        <file>icons/question.svg</file>
+        <file>icons/random.svg</file>
+        <file>icons/refresh.svg</file>
+        <file>icons/remove.svg</file>
+        <file>icons/repeat.svg</file>
+        <file>icons/search.svg</file>
+        <file>icons/star-o.svg</file>
+        <file>icons/star.svg</file>
+        <file>icons/step-backward.svg</file>
+        <file>icons/step-forward.svg</file>
+        <file>icons/stop-circle-o.svg</file>
+        <file>icons/stop.svg</file>
+        <file>icons/volume-down.svg</file>
+        <file>icons/volume-off.svg</file>
+        <file>icons/volume-up.svg</file>
+        <file>icons/arrow-left.svg</file>
+        <file>icons/remote.svg</file>
     </qresource>
     <qresource prefix="/">
         <file>qtlabscontrols.conf</file>
