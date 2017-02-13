@@ -31,10 +31,13 @@ import Qt.labs.settings 1.0
 
 ApplicationWindow
 {
-  id: window
-  visible: true
-  minimumWidth: 500
-  minimumHeight: 700
+    id: window
+    property alias stackView: stackView
+    width: 480
+    height: 320
+    visible: true
+  minimumWidth: 480
+  minimumHeight: 320
   title: "Qore"
 
   Settings
@@ -187,9 +190,15 @@ ApplicationWindow
   }
 
   StackView
-      {
-    id: stackView
-    anchors.fill: parent
+  {
+      id: stackView
+      width: 481
+      height: 320
+      anchors.rightMargin: -103
+      anchors.bottomMargin: 0
+      anchors.leftMargin: 0
+      anchors.topMargin: 0
+      anchors.fill: parent
 
     initialItem: "connection.qml.svg"
   }

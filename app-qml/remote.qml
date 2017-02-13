@@ -30,12 +30,14 @@ import QtQuick.Controls 2.0
 
 Pane
 {
-  id: pane
+    id: pane
+    width: 480
+    height: 320
+    anchors.fill: parent
 
-  anchors.fill: parent
-
-  Column
-  {
+    Row
+    {
+        id: row
     anchors.fill: parent
 
     spacing: 20
@@ -47,6 +49,7 @@ Pane
       //anchors.horizontalCenter: parent.horizontalCenter
       width: Math.min(pane.width, pane.height*3/4)
       height: width
+      anchors.verticalCenter: parent.verticalCenter
 
       Button
       {
@@ -168,8 +171,9 @@ Pane
     }
     GridLayout
     {
-      width: Math.min(pane.width, pane.height*3/4)
-      height: width/5
+        width: height
+        height: 160
+        anchors.verticalCenter: parent.verticalCenter
 
       Button
       {
@@ -192,14 +196,14 @@ Pane
       {
         id: pause
 
-        Layout.row: 0
-        Layout.column: 1
+        Layout.row: 1
+        Layout.column: 0
         Layout.fillWidth: true
         Layout.fillHeight: true
 
         contentItem: Image
         {
-          source: "qrc:/icons/pause"
+          source: "icons/pause.svg"
           anchors.fill: parent
         }
 
@@ -208,8 +212,8 @@ Pane
       Button {
         id: play
 
-        Layout.row: 0
-        Layout.column: 2
+        Layout.row: 1
+        Layout.column: 1
         Layout.fillWidth: true
         Layout.fillHeight: true
 
@@ -226,7 +230,7 @@ Pane
         id: fast_forward
 
         Layout.row: 0
-        Layout.column: 3
+        Layout.column: 1
         Layout.fillWidth: true
         Layout.fillHeight: true
 
